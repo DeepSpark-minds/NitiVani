@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NitiVani | AI Omni-Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for crisp icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fa-solid fa-landmark-dome"></i> NitiVani</h1>
+                <p>AI Policy Omni-Engine v3.0</p>
+            </div>
+            
+            <ul class="nav-list">
+                <li class="nav-item active" data-tab="tab-simplifier"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Simplifier</li>
+                <li class="nav-item" data-tab="tab-translate"><i class="fa-solid fa-language"></i> Regional Translation</li>
+                <li class="nav-item" data-tab="tab-schemes"><i class="fa-solid fa-hand-holding-dollar"></i> Scheme Discovery</li>
+                <li class="nav-item" data-tab="tab-eligibility"><i class="fa-solid fa-user-check"></i> Smart Eligibility</li>
+                <li class="nav-item" data-tab="tab-rights"><i class="fa-solid fa-scale-balanced"></i> Rights & Duties</li>
+                
+                <div class="nav-divider"></div>
+                
+                <li class="nav-item" data-tab="tab-chat"><i class="fa-solid fa-comments"></i> Ask NitiVani AI</li>
+                <li class="nav-item" data-tab="tab-draft"><i class="fa-solid fa-file-signature"></i> Auto-Draft Letter</li>
+                <li class="nav-item" data-tab="tab-deadlines"><i class="fa-regular fa-calendar-xmark"></i> Deadlines Tracker</li>
+                <li class="nav-item" data-tab="tab-export"><i class="fa-solid fa-download"></i> Export Report</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN WORKSPACE -->
+        <main class="workspace">
+            
+            <!-- TAB 1: AI SIMPLIFIER -->
+            <div class="tab-pane active" id="tab-simplifier">
+                <div class="pane-header">
+                    <h2>AI Document Simplifier</h2>
+                    <p>Transform dense, jargon-heavy bureaucratic notifications into crystal-clear plain language.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>1. Upload Official Document</h3>
+                        <input type="file" id="rawPolicyInput" accept=".pdf" />
+                        
+                        <h3>2. Select Target Language</h3>
+                        <select id="targetLangSelect">
+                            <!-- Default -->
+                            <option value="English">English</option>
+                            <!-- Major National/Regional -->
+                            <option value="Hindi">Hindi (हिंदी)</option>
+                            <option value="Bengali">Bengali (বাংলা)</option>
+                            <option value="Marathi">Marathi (मराठी)</option>
+                            <option value="Telugu">Telugu (తెలుగు)</option>
+                            <option value="Tamil">Tamil (தமிழ்)</option>
+                            <option value="Gujarati">Gujarati (ગુજરાતી)</option>
+                            <option value="Urdu">Urdu (اردو)</option>
+                            <option value="Kannada">Kannada (ಕನ್ನಡ)</option>
+                            <option value="Odia">Odia (ଓଡ଼ିଆ)</option>
+                            <option value="Malayalam">Malayalam (മലയാളം)</option>
+                            <option value="Punjabi">Punjabi (ਪੰਜਾਬੀ)</option>
+                            <!-- North East & Regional Specific -->
+                            <option value="Assamese">Assamese (অসমীয়া)</option>
+                            <option value="Maithili">Maithili (मैथिली)</option>
+                            <option value="Santali">Santali (ᱥᱟᱱᱛᱟᱲᱤ)</option>
+                            <option value="Kashmiri">Kashmiri (कॉशुर)</option>
+                            <option value="Nepali">Nepali (नेपाली)</option>
+                            <option value="Konkani">Konkani (कोंकणी)</option>
+                            <option value="Sindhi">Sindhi (سنڌي)</option>
+                            <option value="Dogri">Dogri (डोगरी)</option>
+                            <option value="Manipuri">Manipuri (ꯃꯤꯇꯩꯂꯣꯟ)</option>
+                            <option value="Bodo">Bodo (बड़ो)</option>
+                        </select>
+                        
+                        <button class="btn-primary" id="simplifyBtn">
+                            <i class="fa-solid fa-bolt"></i> Analyze & Generate Audio
+                        </button>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Plain English Breakdown</h3>
+                        
+                        <!-- Real Audio Player -->
+                        <div class="audio-player-box">
+                            <button id="playAudioBtn" class="play-btn">
+                                <i id="playIcon" class="fa-solid fa-play"></i>
+                            </button>
+                            <div style="flex: 1;">
+                                <div id="playLabel" style="font-weight: 600; font-size: 0.9rem;">Voice Explainer</div>
+                                <div class="progress-track">
+                                    <div id="audioProgress" style="background: var(--primary); height: 100%; width: 0%; transition: width 0.1s linear;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="simplifiedOutput" class="output-box">
+                            <p class="placeholder-text">Upload a PDF and click 'Analyze' to generate an easy-to-understand summary and audio voiceover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: TRANSLATION -->
+            <div class="tab-pane" id="tab-translate">
+                <div class="pane-header">
+                    <h2>Multilingual Translation</h2>
+                    <p>Break language barriers. Read the summarized policy in your local regional language.</p>
+                </div>
+                <div class="card">
+                    <button id="translateBtn" class="btn-primary" style="margin-bottom: 20px;">
+                        <i class="fa-solid fa-language"></i> Translate Uploaded Document
+                    </button>
+                    <div id="translationOutput" class="output-box">
+                        <p class="placeholder-text">Your regional translation will appear here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SCHEMES -->
+            <div class="tab-pane" id="tab-schemes">
+                <div class="pane-header">
+                    <h2>Hidden Grant Discovery</h2>
+                    <p>Automatically locate financial assistance programs hidden within the policy text.</p>
+                </div>
+                <div id="schemesContainer">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- TAB 4: ELIGIBILITY -->
+            <div class="tab-pane" id="tab-eligibility">
+                <div class="pane-header">
+                    <h2>Smart Eligibility Checker</h2>
+                    <p>Enter your details to see if you qualify for the benefits mentioned in the uploaded document.</p>
+                </div>
+                <div class="card" style="max-width: 500px;">
+                    <label style="font-weight: 600; margin-bottom: 8px; display: block;">Annual Family Income (₹):</label>
+                    <input type="number" id="applicantIncome" placeholder="e.g. 250000">
+                    
+                    <button id="checkEligibilityBtn" class="btn-primary" style="background: #10b981; margin-bottom: 20px;">
+                        <i class="fa-solid fa-user-check"></i> Evaluate Eligibility
+                    </button>
+                    
+                    <div id="eligibilityResultBox" class="output-box" style="min-height: auto; padding: 15px;">
+                        <p class="placeholder-text" style="margin-top: 0;">Results will appear here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: RIGHTS & DUTIES -->
+            <div class="tab-pane" id="tab-rights">
+                <div class="pane-header">
+                    <h2>Rights & Duties Explainer</h2>
+                    <p>Understand your legal rights, protections, and civic responsibilities under this policy.</p>
+                </div>
+                <div id="rightsContainer">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- TAB 6: ASK AI -->
+            <div class="tab-pane" id="tab-chat">
+                <div class="pane-header">
+                    <h2>Ask NitiVani (Q&A)</h2>
+                    <p>Chat directly with the document. Ask specific questions about the policy rules.</p>
+                </div>
+                <div class="card">
+                    <div id="chatHistory" class="output-box" style="height: 350px; overflow-y: auto; margin-bottom: 20px; padding: 15px;">
+                        <p class="placeholder-text" style="margin-top: 20px;">Type your question below.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="chatInput" placeholder="E.g., What is the penalty for late renewal?" style="margin-bottom: 0;">
+                        <button id="sendChatBtn" class="btn-primary" style="width: auto; padding: 0 30px;">
+                            <i class="fa-solid fa-paper-plane"></i> Ask
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 7: AUTO-DRAFTER -->
+            <div class="tab-pane" id="tab-draft">
+                <div class="pane-header">
+                    <h2>Official Letter Auto-Drafter</h2>
+                    <p>Instantly generate professional applications or compliance letters based on the policy.</p>
+                </div>
+                <div class="card">
+                    <button id="generateDraftBtn" class="btn-primary" style="background: #0ea5e9; margin-bottom: 20px;">
+                        <i class="fa-solid fa-pen-nib"></i> Generate Official Letter
+                    </button>
+                    <div id="draftOutput" class="output-box" style="white-space: pre-wrap; font-family: 'Courier New', Courier, monospace;">
+                        <p class="placeholder-text">Your auto-generated official letter will appear here...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 8: DEADLINES -->
+            <div class="tab-pane" id="tab-deadlines">
+                <div class="pane-header">
+                    <h2>Deadline & Compliance Tracker</h2>
+                    <p>Extract crucial expiration dates and submission windows to avoid penalties.</p>
+                </div>
+                <div class="card">
+                    <button id="scanDeadlinesBtn" class="btn-primary" style="background: #ef4444; margin-bottom: 20px;">
+                        <i class="fa-solid fa-stopwatch"></i> Scan PDF for Critical Deadlines
+                    </button>
+                    <div id="deadlinesList" style="display: flex; flex-direction: column; gap: 15px;">
+                        <p class="placeholder-text">Warning dates will populate here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 9: EXPORT -->
+            <div class="tab-pane" id="tab-export">
+                <div class="pane-header">
+                    <h2>Download Citizen Report</h2>
+                    <p>Export all AI analysis, extracted schemes, rights, and drafts into a single offline file.</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 60px 20px;">
+                    <i class="fa-solid fa-file-arrow-down" style="font-size: 4rem; color: #10b981; margin-bottom: 25px;"></i>
+                    <h2 style="margin-bottom: 25px; color: var(--text-main);">Your NitiVani Summary is Ready</h2>
+                    <button id="exportReportBtn" class="btn-primary" style="background: #10b981; width: auto; margin: 0 auto; padding: 15px 40px; font-size: 1.1rem;">
+                        Download .TXT Report
+                    </button>
+                    <p id="exportStatus" style="margin-top: 20px; font-weight: 500;"></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+    <!-- Link to Frontend Engine -->
+    <script src="app.js"></script>
+    
+    <!-- Tab Navigation Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-tab');
+                    const targetPane = document.getElementById(targetId);
+                    if(targetPane) targetPane.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

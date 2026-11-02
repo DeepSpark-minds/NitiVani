@@ -1,0 +1,11 @@
+# Python environments and cache
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Environment variables (Protects your Groq Key!)
+.env
+
+# Audio temporary files
+backend/temp_audio/*.mp3
